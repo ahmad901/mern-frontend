@@ -20,8 +20,5 @@ node('master') {
    }
     stage('Remove Docker Image in local') {
         sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"   
-    }
-    stage("Clean Workspace"){
-        cleanWs()
     }    
 }
