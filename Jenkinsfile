@@ -17,8 +17,11 @@ node('master') {
         sh'''sed -i "20d" s-frontend.yml'''
         sh'''sed -i "19 a \'\\'        image: hegiwibowo/mern-frontend:${BUILD_NUMBER}" s-frontend.yml && sed -i "s/''//"  s-frontend.yml'''
         sh "kubectl apply -f  s-frontend.yml"
-   }
+    }
     stage('Remove Docker Image in local') {
         sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${BUILD_NUMBER}"   
-    }    
+    }     
+    stage("Clean Workspace") {
+        cleanWs()
+    }
 }
