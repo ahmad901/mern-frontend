@@ -15,7 +15,7 @@ node('master') {
     }
     stage('Deploy To Kubernetes Cluster') {
         sh'''sed -i "20d" s-frontend.yml'''
-        sh'''sed -i "19 a \'\\'        image: hegiwibowo/mern-frontend:${BUILD_NUMBER}" s-frontend.yml && sed -i "s/''//"  s-frontend.yml'''
+        sh'''sed -i "19 a \'\\'        image: ahmadwizam/mern-frontend:${BUILD_NUMBER}" s-frontend.yml && sed -i "s/''//"  s-frontend.yml'''
         sh "kubectl apply -f  s-frontend.yml"
     }
     stage('Remove Docker Image in local') {
